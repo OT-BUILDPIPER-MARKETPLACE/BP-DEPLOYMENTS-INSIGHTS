@@ -9,6 +9,7 @@ source /opt/buildpiper/shell-functions/di-functions.sh
 
 
 pipeline_data_json_file="/bp/data/pipeline_context_param"
+cat /bp/data/pipeline_context_param
 
 CHANGE_TICKET_ID=`fetch_change_ticket_id "$pipeline_data_json_file"`
 CHANGE_TICKET_ID_DESCRIPTION=`fetch_change_ticket_id_description "$pipeline_data_json_file"`
@@ -23,7 +24,7 @@ export CHANGE_TICKET_ID_DESCRIPTION
 export SUB_TASK_JSON
 
 generateDIDataJson /opt/buildpiper/data/di.template deployment.di
-
+cat deployment.di
 sendDIData deployment.di $BP_API_URL $USER_NAME $PASSWORD
 
 TASK_STATUS=$?
