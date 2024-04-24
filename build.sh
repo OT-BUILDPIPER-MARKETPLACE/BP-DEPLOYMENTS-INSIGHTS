@@ -24,7 +24,7 @@ export SUB_TASK_JSON
 
 generateDIDataJson /opt/buildpiper/data/di.template deployment.di
 
-sendDIData deployment.di $BP_API_URL
+sendDIData deployment.di 
 
 TASK_STATUS=$?
 if [ ${TASK_STATUS} -eq 0 ]
