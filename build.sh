@@ -9,6 +9,12 @@ source /opt/buildpiper/shell-functions/di-functions.sh
 
 
 pipeline_data_json_file="/bp/data/pipeline_context_param"
+if [ `isFileExist ${pipeline_data_json_file}` -ne 0 ]
+then
+    TASK_STATUS=1
+    logErrorMessage "File name: $pipeline_data_json_file does not exists please check"
+    exit 1
+fi 
 cat /bp/data/pipeline_context_param
 
 CHANGE_TICKET_ID=`fetch_change_ticket_id "$pipeline_data_json_file"`
