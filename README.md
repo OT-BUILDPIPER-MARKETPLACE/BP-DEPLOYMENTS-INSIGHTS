@@ -16,9 +16,9 @@ ENV REQUIRED IN BP step Catalog are
 
 WORKSPACE       /bp/workspace
 
-BP_API_URL     <your-insight-api-url>
+BP_API_URL     your-insight-api-url
 
-USER_NAME      <user name>
+USER_NAME      user-name>
 
-PASSWORD       <password>
+PASSWORD       password
 
