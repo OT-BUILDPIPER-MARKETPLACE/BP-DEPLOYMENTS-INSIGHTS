@@ -11,8 +11,14 @@ docker build -t ot/deployment-insight:0.1 .
 ```
 
 ENV REQUIRED IN BP step Catalog are
+
 ***variable name***  ***value***
+
 WORKSPACE       /bp/workspace
+
 BP_API_URL     <your-insight-api-url>
+
 USER_NAME      <user name>
+
 PASSWORD       <password>
+
