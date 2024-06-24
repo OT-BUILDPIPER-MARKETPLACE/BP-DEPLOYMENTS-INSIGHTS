@@ -15,14 +15,23 @@ then
     logErrorMessage "File name: $pipeline_data_json_file does not exists please check"
     exit 1
 fi 
-cat /bp/data/pipeline_context_param
 
-CHANGE_TICKET_ID=`fetch_change_ticket_id "$pipeline_data_json_file"`
-CHANGE_TICKET_ID_DESCRIPTION=`fetch_change_ticket_id_description "$pipeline_data_json_file"`
-APPLICATION_NAME=`fetch_application_name "$pipeline_data_json_file"`
-SUB_TASK_JSON=`fetch_sub_tasks "$pipeline_data_json_file"`
-SERVICE_JSON=`fetch_services "$pipeline_data_json_file"`
 
+CHANGE_TICKET_ID=`fetch_change_ticket_id "$pipeline_data_json_file" $JIRA_OPS`
+
+if [ "$jira_ops" == "true" ]
+  then 
+    CHANGE_TICKET_ID_DESCRIPTION=`fetch_change_ticket_id_description "$pipeline_data_json_file"`
+    APPLICATION_NAME=`fetch_application_name "$pipeline_data_json_file"`
+    SUB_TASK_JSON=`fetch_sub_tasks "$pipeline_data_json_file"`
+    SERVICE_JSON=`fetch_services "$pipeline_data_json_file"`
+else 
+    export ISSUE_KEY=$CHANGE_TICKET_ID
+
+    SUB_TASK_JSON=`python3 subtask_info.py`
+    SUB_TASK_JSON=`echo "$SUB_TASK_JSON" | tr -d []`
+
+fi   
 export APPLICATION_NAME
 export SERVICE_JSON
 export CHANGE_TICKET_ID
